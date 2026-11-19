@@ -4,7 +4,7 @@ The Diamonds game from the HP 38G graphing calculator, ported to run in a web br
 
 **Play it: https://www.msawtell.com/diamonds/**
 
-Ported by [Martin Sawtell](https://www.msawtell.com/).
+Ported by [Martin Sawtell](https://www.msawtell.com/)'s agent.
 
 We played this on our HP 38Gs in high school. This port runs the original game in a browser, on a
 green monochrome 131 x 64 LCD like the calculator's.
