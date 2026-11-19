@@ -1,0 +1,211 @@
+$Id: diam38.txt 1.3 1998/07/31 22:06:45 Detlef Exp $
+
+Diamonds 38 for the HP38G
+
+By: Douglas R. Cannon
+On: August 7, 1993
+Slightly modified on October 30, 1995
+Modified for the HP38G on October 19, 1996.
+Modified slowly up until June 20, 1997.
+
+email: dougc@erudite.com or doug_cannon@juno.com
+hp48 page: http://www.erudite.com/~dougc/hp48.htm
+
+Home address as of Sept 1996:
+350 N 850 E.
+American Fork, UT 84003
+(801) 763-8798
+
+
+Modified by Detlef Mueller
+email: detlef@provi.de
+url:   http://www.provi.de/~detlef
+
+
+	  !!! Important notes !!!
+
+
+DIAMONDS is distributed in the hope that it will
+be fun, but DIAMONDS is provided `as is,' and is
+subject to change without notice.
+
+D. Mueller and D. Cannon make no warranty of any
+kind with regard to the software or documentation,
+including, but not limited to, the implied
+warranties of merchantability and fitness for a
+particular purpose.
+
+D. Mueller and D. Cannon shall not be liable for
+any error or for incidental or consequential
+damages in connection with the furnishing,
+performance, or use of this software and
+documentation.
+
+Sorry, I'd to add this.
+
+$Log: diam38.txt $
+Revision 1.3  1998/07/31 22:06:45  Detlef
+Brought to release level.
+
+Revision 1.2  1997/06/24 18:07:37  Detlef
+Add the "important notes"
+
+-------------------------------------------------
+
+Files:
+------
+DIAM38.000   The game DIAMONDS
+
+LIB1537L.000 Refection library
+HP38DIR.000  Control file for d/l the game into your HP38
+HP38DIR.CUR  Control file for d/l the game into your HP38
+
+DIAM38.TXT   This file
+
+
+These are missing for this release (available seperate):
+
+DIAM38.S     Diamonds source code (SASM compatible)
+MAKE.BAT     A batch file to compile the source
+*	     Supporting files needed to build DIAMONDS
+
+
+Installation:
+-------------
+
+There're two ways to install the game:
+    1) load it from a friend who has already installed it
+       (you should know how to do that... ;-)
+    2) download it via wire from a PC.
+       (also you should know how to, a more komlete description
+       will be available w/ the full release of the game)
+
+
+Keys:
+-----
+
+[left arrow] move left
+[right arrow] move right
+[DEL] Replay level (by losing one life)
+[-X] Sound On/Off
+[ENTER] Pause
+[Shift] Quit the current game
+[ON] Exit
+
+
+Game Play:
+----------
+
+The object of each screen is to get the diamond bricks.
+Once you have removed each diamond brick, you advance to
+the next level.
+
+Before you can erase any diamond bricks, you must erase
+all regular bricks first.  A regular brick can only be
+erased when you are in the correct mode.  By hitting special
+paintbrush bricks you can change your brick mode.
+
+
+Special bricks:
+---------------
+
+White bricks:  You are only in the white brick mode at
+the start of each level.  If you don't erase all of the
+white bricks before changing modes, then you cannot solve
+the level.  You can never return to the white brick mode
+unless you press [DEL], which costs one life.
+
+Regular bricks:  There are 4 different patterns of regular
+bricks.  You cannot clear a regular brick unless you are
+in the correct mode.
+
+Paintbrush bricks:  These bricks look similar to the
+regular bricks, only the right side is darkened.  Hit one
+of these to change your brick mode.
+
+Key and lock bricks:  Hit a key brick to get a key.  You
+cannot clear a lock brick unless you are carrying a key.
+Hitting key and lock bricks do not modify your brick mode.
+You do not always need to clear all key and lock bricks in
+order to solve the level.
+
+Arrow bricks:  Hitting an arrow brick reverses the movement
+key directions.  The left arrow key now moves the ball right,
+and the right arrow key moves the ball left.  Hit a second
+arrow brick to change the keys back to normal.
+
+Cross bricks:  Don't hit these, they kill you.
+
+Diamonds bricks:  You can't clear these until all white
+and regular bricks have been cleared.  Clear all diamonds
+to solve the level.  If there are any bonus ticks left
+when you solve the level, you are awarded 25 points per
+tick.
+
+
+Scoring:
+--------
+
+White and regular bricks: 3 pts.
+Key bricks: 25 pts.
+Lock bricks: 50 pts.
+Diamond bricks: 100 pts.
+Bonus: 25 pts. / tick
+
+An extra life is awarded every 5,000 points.
+
+
+Levels:
+-------
+
+Diamonds 38 has 50 levels.  I promise all of them can be
+solved.  I have personally solved each one, but I have never
+solved all 50 together in one game.  If you do, then you are
+better than me, and if you tell me about it, I might just write
+your name down somewhere.
+
+
+Myths and Rumors:
+-----------------
+
+See the source code for explanations of myths and rumors.
+
+
+-------------------------------------------------
+Thanks first of all to Oliver Dreer.  He is responsible for writing
+Diamonds on the Macintosh which is where all of my ideas started
+from.  He gave me permission to write an HP48 version of his
+game, and I've had a lot of fun with it.  Thanks Oli!
+
+Special thanks to Paul Hart for converting the Diamonds 2.0 source
+code into SASM format.	The source was originally written for my
+own assembler, SATASM.EXE, and has now been converted to be SASM
+compatible.  Paul spent many hours working on it, and he did a great
+job!  Thanks Paul!
+
+Special thanks also to Jim Donnelly for being such a cool guy.	I owe
+him thanks as well for his latest book (_An Introduction to HP 48 System
+RPL and Assembly Language Programming_), his earlier books, and miscellaneous
+help and encouragement over the last couple years.  You can learn a few
+things from reading the Diamonds source code, but if you really want
+to learn something, then get Jim's book!
+
+Thanks also to Detlef Mueller for getting me interested in getting this
+Diamonds 38 job done.  I have been meaning to do it for well over a
+year (has it been two ?!) and he helped me get interested in the project
+again.
+
+Thanks as well to Jean-Yves Avenard.  He did the final touches for me
+to get the game completely converted to an HP38G aplet.
+
+-------------------------------------------------
+
+Diamonds 38 is freeware.  You have the game, you have the source code.
+You can play it, you can modify it, you can give it away, you can sell it.
+Just be sure that you have fun with it.
+
+
+Enjoy,
+
+Doug Cannon
+

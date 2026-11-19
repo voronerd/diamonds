@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex, nofollow">
+<title>Diamonds 38</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23b3c19d'/%3E%3Cpath d='M8 2l5 6-5 6-5-6z' fill='%231a2416'/%3E%3C/svg%3E">
+<meta name="description" content="Diamonds for the HP 38G graphing calculator, ported to the browser from the original 1990s assembly source.">
+<style>
+  :root {
+    --page: #16181c; --body: #34383f; --body-hi: #41464e; --bezel: #1d1f23;
+    --key: #26292e; --key-hi: #3a3e45; --key-text: #e8e8e4; --soft: #c9ccd1; --soft-text: #1d1f23;
+    --shift: #3f86b8; --label: #9aa0a8; --link: #9cc3e0;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--page); color: var(--label); }
+  body {
+    font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+    padding: 16px; -webkit-tap-highlight-color: transparent;
+  }
+  .calc {
+    width: min(560px, 100%); background: linear-gradient(180deg, var(--body-hi), var(--body) 30%);
+    border-radius: 22px 22px 30px 30px; padding: 18px 18px 22px;
+    box-shadow: 0 18px 50px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.08);
+    user-select: none; -webkit-user-select: none; touch-action: manipulation;
+  }
+  .brand { display: flex; justify-content: space-between; align-items: baseline; padding: 0 6px 10px; color: #c8ccd2; }
+  .brand b { font-weight: 600; letter-spacing: .12em; font-size: 13px; }
+  .brand span { font-size: 11px; letter-spacing: .08em; color: var(--label); }
+  .bezel { background: var(--bezel); border-radius: 10px; padding: 8px 12px 14px; box-shadow: inset 0 2px 6px rgba(0,0,0,.6); }
+  .ann { height: 16px; display: flex; gap: 14px; justify-content: flex-end; padding: 0 2px 4px;
+         font: 600 10px/16px ui-monospace, monospace; letter-spacing: .1em; color: #6d7a5e; }
+  .ann i { font-style: normal; opacity: 0; transition: opacity .1s; }
+  body.paused .ann .a-pause, body.muted .ann .a-mute { opacity: 1; }
+  .glass { position: relative; border-radius: 3px; overflow: hidden; background: #b3c19d;
+           box-shadow: inset 0 0 0 1px rgba(0,0,0,.35); }
+  .glass::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(160deg, rgba(255,255,255,.14), rgba(255,255,255,0) 40%),
+                radial-gradient(ellipse at center, rgba(0,0,0,0) 60%, rgba(0,0,0,.12)); }
+  #lcd { display: block; width: 100%; aspect-ratio: 131 / 64; }
+
+  .keys { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px 8px; margin-top: 18px; }
+  .key {
+    appearance: none; border: 0; font: inherit; cursor: pointer; color: var(--key-text);
+    background: linear-gradient(180deg, var(--key-hi), var(--key)); border-radius: 7px; height: 38px;
+    box-shadow: 0 3px 0 #0e0f11, 0 4px 6px rgba(0,0,0,.4); font-size: 13px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center; letter-spacing: .04em; touch-action: none;
+  }
+  .key.down { transform: translateY(2px); box-shadow: 0 1px 0 #0e0f11, 0 1px 2px rgba(0,0,0,.4); filter: brightness(1.15); }
+  .key.soft { background: linear-gradient(180deg, #dfe1e5, var(--soft)); color: var(--soft-text); height: 26px; border-radius: 5px; }
+  .key.shift { background: linear-gradient(180deg, #4d97ca, var(--shift)); }
+  .key.wide { grid-column: span 2; }
+  .key.arrow { height: 56px; font-size: 20px; grid-column: span 3; }
+  .key small { display: block; font-size: 9px; font-weight: 500; color: var(--label); }
+  .key .stack { line-height: 1.1; text-align: center; }
+  .gap { grid-column: span 3; }
+
+  .help { width: min(560px, 100%); margin-top: 18px; font-size: 13px; }
+  .help h2 { font-size: 13px; color: #c8ccd2; margin: 14px 0 6px; font-weight: 600; letter-spacing: .04em; }
+  .help table { border-collapse: collapse; width: 100%; }
+  .help td { padding: 3px 8px 3px 0; vertical-align: top; }
+  .help td:first-child { white-space: nowrap; color: #d6d9de; width: 1%; }
+  kbd { font: 12px ui-monospace, monospace; background: #24272c; border: 1px solid #3a3e45; border-radius: 4px; padding: 0 5px; }
+  .help p { margin: 6px 0; }
+  a { color: var(--link); }
+  @media (max-width: 420px) { body { padding: 10px; } .calc { padding: 14px 12px 18px; } .keys { gap: 9px 6px; } }
+</style>
+</head>
+<body>
+<div class="calc">
+  <div class="brand"><b>DIAMONDS 38</b><span>131 &times; 64 LCD</span></div>
+  <div class="bezel">
+    <div class="ann"><i class="a-pause">PAUSE</i><i class="a-mute">MUTE</i></div>
+    <div class="glass"><canvas id="lcd" aria-label="Diamonds game screen"></canvas></div>
+  </div>
+  <div class="keys">
+    <button class="key soft wide" data-key="A">A</button>
+    <button class="key soft wide" data-key="B">B</button>
+    <button class="key soft wide" data-key="C">C</button>
+
+    <button class="key shift" data-key="SHIFT"><span class="stack">SHIFT<small>quit</small></span></button>
+    <button class="key" data-key="DEL"><span class="stack">DEL<small>retry</small></span></button>
+    <button class="key" data-key="NEG"><span class="stack">(&minus;)<small>sound</small></span></button>
+    <button class="key wide" data-key="ENTER"><span class="stack">ENTER<small>start / pause</small></span></button>
+    <button class="key" data-key="ON"><span class="stack">ON<small>exit</small></span></button>
+
+    <button class="key arrow" data-key="LEFT" aria-label="Left">&#9664;</button>
+    <button class="key arrow" data-key="RIGHT" aria-label="Right">&#9654;</button>
+  </div>
+</div>
+
+<div class="help">
+  <h2>How to play</h2>
+  <p>The ball bounces up and down on its own. You steer it left and right. Clear every diamond to finish a level, but
+  diamonds only break once all the plain bricks are gone, and a plain brick only breaks when your brush (shown on the
+  right of the screen) matches it. Hit a paintbrush brick, the one with a dark right edge, to change your brush.
+  Keys open locks, double arrows swap left and right, and crosses kill you.</p>
+  <table>
+    <tr><td><kbd>Enter</kbd> / <kbd>Space</kbd></td><td>Start, then pause and resume during a game</td></tr>
+    <tr><td><kbd>A</kbd> <kbd>B</kbd> <kbd>C</kbd></td><td>Menu: play, change speed, show keys</td></tr>
+    <tr><td><kbd>&larr;</kbd> <kbd>&rarr;</kbd></td><td>Steer the ball</td></tr>
+    <tr><td><kbd>Backspace</kbd></td><td>Restart the level (costs a life)</td></tr>
+    <tr><td><kbd>Shift</kbd></td><td>Give up the current game</td></tr>
+    <tr><td><kbd>M</kbd> / <kbd>-</kbd></td><td>Sound on/off</td></tr>
+    <tr><td><kbd>Esc</kbd></td><td>Exit (the calculator's ON key)</td></tr>
+  </table>
+  <h2>Credits</h2>
+  <p>Diamonds 38 by Douglas R. Cannon (1993, ported to the HP 38G in 1996-97) and Detlef Mueller (1998), based on
+  Oliver Dreer's Diamonds for the Macintosh. Released as freeware with source; downloaded from
+  <a href="https://www.hpcalc.org/details/529" rel="noopener">hpcalc.org</a>. This browser version is a line-by-line
+  port of the original Saturn assembly: the levels, graphics, ball physics, timing and beeps all come straight from it.</p>
+  <p>Ported by <a href="https://www.msawtell.com/">Martin Sawtell</a>.
+  Source: <a href="https://github.com/voronerd/diamonds" rel="noopener">github.com/voronerd/diamonds</a>.</p>
+</div>
+
+<script src="data.js"></script>
+<script src="diamonds.js"></script>
+</body>
+</html>
