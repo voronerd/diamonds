@@ -662,6 +662,7 @@
   }
   window.addEventListener('keydown', e => {
     if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.target.closest && e.target.closest('a, input, textarea, select, [contenteditable]')) return;
     const k = KEYMAP[e.key] || KEYMAP[e.key.toLowerCase()];
     if (!k) return;
     e.preventDefault();
